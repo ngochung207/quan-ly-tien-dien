@@ -1,9 +1,9 @@
+import java.lang.reflect.InvocationHandler;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Manager {
     private Map<String, Info> customerManager = new HashMap<String, Info>();
-    //    private List<Products> productsManager = new LinkedList<Products>();
     private Map<String, Invoice> invoiceManager = new HashMap<String, Invoice>();
 
     // Phương thức thao tác với quản lý thông tin khách hàng.
@@ -22,7 +22,7 @@ public class Manager {
         return customerManager.get(id);
     }
 
-    public String getNameByID(String id) {
+    public String getNameCustomerByID(String id) {
         // Lấy ra tên khách hàng dựa vào số id
         if (customerManager.isEmpty()) {
             return null;
@@ -81,5 +81,18 @@ public class Manager {
         return false;
     }
 
+    public void showAllInvoice(){
+        for(String key: invoiceManager.keySet()){
+            Invoice e = invoiceManager.get(key);
+            System.out.println(toStringInvoice(e));
+        }
 
+    }
+
+    public String toStringInvoice(Invoice e) {
+        return "Số hóa đơn: " + e.getNumberInvoice() + '\n' +
+                "Mã khách hàng: " + e.getIdCustomer() + '\n' +
+                "Tên khách hàng: " + this.getNameCustomerByID(e.getIdCustomer()) + '\n' +
+                "Hàng hóa: " + e.getListProducts().toString();
+    }
 }

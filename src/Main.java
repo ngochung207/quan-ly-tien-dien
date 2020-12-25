@@ -19,8 +19,8 @@ public class Main {
                 case 2: // Lập hóa đơn thông tin khách hàng.
                     createNewInvoice();
                     break;
-                case 3: // Hiện thị thông tin của một khách hàng
-
+                case 3: // Hiện thị toàn bộ thông tin hóa đơn.
+                    showAllInvoice();
                     break;
                 case 4: // Thoát khoải chương trình.
                     System.exit(0);
@@ -35,7 +35,7 @@ public class Main {
 
     public static void Menu() {
         System.out.println("-------- Quan ly hoa don dien -------");
-        System.out.println("01.Thêm mới thông tin khách hàng");
+        System.out.println("01. Thêm mới thông tin khách hàng");
         System.out.println("02. Lập hóa đơn");
         System.out.println("03. Hiện thị thông tin của một người dùng");
         System.out.println("04. Exit");
@@ -69,7 +69,7 @@ public class Main {
             Scanner sc = new Scanner(System.in);
             System.out.print("Nhập số hóa đơn: ");
             String numberInvoice = sc.nextLine();
-            if(eCompany.checkInvoiceByID(numberInvoice)){
+            if (eCompany.checkInvoiceByID(numberInvoice)) {
                 System.out.println("--> Hóa đơn đã tồn tại <--");
             } else {
                 System.out.print("Nhập vào tháng: ");
@@ -77,10 +77,12 @@ public class Main {
                 sc.nextLine();
                 System.out.print("Nhập vào mã khách hàng: ");
                 String idCustomer = sc.nextLine();
-                String nameCustomer = eCompany.getNameByID(idCustomer);
+                String nameCustomer = eCompany.getNameCustomerByID(idCustomer);
                 System.out.println("Tên khách hàng: " + nameCustomer);
                 System.out.print("--> Nhập thông tin hàng hóa <--");
                 sc.nextLine();
+                // Tạo mới danh sách sản phẩm.
+                List<Products> tempProducts = new ArrayList<>();
                 do {
                     System.out.print("Nhập thông tin mã hàng: ");
                     String codeName = sc.nextLine();
@@ -92,25 +94,29 @@ public class Main {
                     int indexFinal = Integer.parseInt(sc.nextLine());
 
                     Products product = new Products(codeName, nameProduct, indexHead, indexFinal);
-                    List<Products> tempProducts = new ArrayList<>();
+
                     tempProducts.add(product);
                     Invoice tempInvoice = new Invoice(numberInvoice, month, idCustomer, tempProducts);
                     eCompany.addNewInvoice(tempInvoice);
                     System.out.println("Có thêm hàng hóa không Y/N: ");
                     String add = sc.nextLine();
-                    if (add.equals("N")){
+                    if (add.equals("N")) {
                         System.out.println("Tạo thành công hóa đơn số: " + numberInvoice);
                         break;
                     }
-                }while (true);
+                } while (true);
             }
             System.out.println("Có muốn lập mới một hóa đơn khác không Y/N: ");
             String add = sc.nextLine();
-            if (add.equals("N")){
+            if (add.equals("N")) {
                 break;
             }
         }
         while (true);
+    }
+
+    public static void showAllInvoice() {
+        eCompany.showAllInvoice();
     }
 
     // Thêm mới thông tin khách hàng.
