@@ -50,12 +50,12 @@ public class Products {
         this.indexFinal = indexFinal;
     }
 
-    @Override
-    public String toString() {
-        return "Products: " +
-                "codeName: " + codeName + '\t' +
-                ", nameProducts: " + nameProducts + '\t' +
-                ", indexHead: " + indexHead + '\t' +
-                ", indexFinal: " + indexFinal + '\n';
+    public void toStringProduct() {
+        System.out.printf("\n%-10s%-40s%-10s%-10s",
+                this.getCodeName(),
+                this.getNameProducts(),
+                this.getIndexHead(),
+                this.getIndexFinal(),'\n');
     }
+
 }

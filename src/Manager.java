@@ -84,15 +84,22 @@ public class Manager {
     public void showAllInvoice(){
         for(String key: invoiceManager.keySet()){
             Invoice e = invoiceManager.get(key);
-            System.out.println(toStringInvoice(e));
+            System.out.print("Số HĐ: " + e.getNumberInvoice() + '\n' +
+                    "Mã Khách: " + e.getIdCustomer() + '\n' +
+                    "Tên Khách: " + customerManager.get(e.getIdCustomer()).getName());
+            toStringInvoice(e);
         }
-
     }
 
-    public String toStringInvoice(Invoice e) {
-        return "Số hóa đơn: " + e.getNumberInvoice() + '\n' +
-                "Mã khách hàng: " + e.getIdCustomer() + '\n' +
-                "Tên khách hàng: " + this.getNameCustomerByID(e.getIdCustomer()) + '\n' +
-                "Hàng hóa: " + e.getListProducts().toString();
+    public void toStringInvoice(Invoice e) {
+        System.out.println();
+        System.out.printf("\n%-10s%-30s%-15s%-15s"
+                ,"Mã hàng"
+                ,"Tên hàng"
+                ,"Chỉ số đầu"
+                ,"Chỉ số cuối",'\n');
+        e.getEachProduct(e.getListProducts());
+        System.out.println();
+        System.out.println("<-------------->");
     }
 }

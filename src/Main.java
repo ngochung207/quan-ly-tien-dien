@@ -34,7 +34,7 @@ public class Main {
     }
 
     public static void Menu() {
-        System.out.println("-------- Quan ly hoa don dien -------");
+        System.out.println("-------- Quản lý hóa đơn điện -------");
         System.out.println("01. Thêm mới thông tin khách hàng");
         System.out.println("02. Lập hóa đơn");
         System.out.println("03. Hiện thị thông tin của một người dùng");
@@ -119,8 +119,4 @@ public class Main {
         eCompany.showAllInvoice();
     }
 
-    // Thêm mới thông tin khách hàng.
-    // Check mã khách hàng có trong danh mục không
-    // Thêm mới hóa đơn.
-    // Check số hóa đơn có trong danh sách hóa đơn không.
 }
