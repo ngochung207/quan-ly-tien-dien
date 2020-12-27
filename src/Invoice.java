@@ -44,11 +44,7 @@ public class Invoice {
     public List<Products> getListProducts() {
         return listProducts;
     }
-    public void getEachProduct(List<Products> listProducts){
-        for(Products p: listProducts){
-            p.toStringProduct();
-        }
-    }
+
     public void setListProducts(List<Products> listProducts) {
         this.listProducts = listProducts;
     }

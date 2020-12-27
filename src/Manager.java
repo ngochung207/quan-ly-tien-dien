@@ -1,5 +1,6 @@
 import java.lang.reflect.InvocationHandler;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Manager {
@@ -81,8 +82,8 @@ public class Manager {
         return false;
     }
 
-    public void showAllInvoice(){
-        for(String key: invoiceManager.keySet()){
+    public void showAllInvoice() {
+        for (String key : invoiceManager.keySet()) {
             Invoice e = invoiceManager.get(key);
             System.out.print("Số HĐ: " + e.getNumberInvoice() + '\n' +
                     "Mã Khách: " + e.getIdCustomer() + '\n' +
@@ -93,12 +94,37 @@ public class Manager {
 
     public void toStringInvoice(Invoice e) {
         System.out.println();
-        System.out.printf("\n%-10s%-30s%-15s%-15s"
-                ,"Mã hàng"
-                ,"Tên hàng"
-                ,"Chỉ số đầu"
-                ,"Chỉ số cuối",'\n');
-        e.getEachProduct(e.getListProducts());
+        System.out.printf("\n%-10s%-30s%-15s%-15s%-15s%-15s%-15s"
+                , "Mã hàng"
+                , "Tên hàng"
+                , "Chỉ số đầu"
+                , "Chỉ số cuối"
+                , "Mức tiêu thụ"
+                , "Đơn giá"
+                , "Thành tiền"
+                , '\n');
+        CategoryPrice prices = new CategoryPrice();
+        List<Products> listProducts = e.getListProducts();
+        for (Products products : listProducts) {
+            // Lấy thông tin
+            String codeProduct = products.getCodeName();
+            String nameProduct = products.getNameProducts();
+            int indexHead = products.getIndexHead();
+            int indexFinal = products.getIndexFinal();
+            int consume = products.Consume();
+            Double price = prices.getPrice(codeProduct);
+            Double pay = consume * price;
+            // Display info
+            System.out.printf("\n%-10s%-30s%-15s%-15s%-15s%-15s%-15s"
+                    , codeProduct
+                    , nameProduct
+                    , indexHead
+                    , indexFinal
+                    , consume
+                    , price
+                    , pay
+                    , '\n');
+        }
         System.out.println();
         System.out.println("<-------------->");
     }

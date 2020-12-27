@@ -50,12 +50,7 @@ public class Products {
         this.indexFinal = indexFinal;
     }
 
-    public void toStringProduct() {
-        System.out.printf("\n%-10s%-40s%-10s%-10s",
-                this.getCodeName(),
-                this.getNameProducts(),
-                this.getIndexHead(),
-                this.getIndexFinal(),'\n');
+    public int Consume() {
+        return this.indexFinal - this.indexHead;
     }
-
 }
